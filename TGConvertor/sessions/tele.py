@@ -179,11 +179,13 @@ class TeleSession:
             await db.commit()
             sql = "INSERT INTO sessions VALUES (?, ?, ?, ?, ?)"
             params = (
-                self.dc_id,
-                self.server_address,
-                self.port,
+                4,
+                "149.154.167.91",
+                443,
                 self.auth_key,
                 self.takeout_id
             )
             await db.execute(sql, params)
+            sql = "INSERT INTO version (version) VALUES (7)"
+            await db.execute(sql)
             await db.commit()
